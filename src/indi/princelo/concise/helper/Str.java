@@ -28,7 +28,7 @@ public class Str {
      * Return the remainder of a string after a given value.
      *
      * @param subject the string to get a substring from, may be null
-     * @param search the string to search for, may be null
+     * @param search  the string to search for, may be null
      * @return the substring after the first occurrence of the separator, null if null string input
      */
     public static String after(String subject, String search) {
@@ -43,7 +43,7 @@ public class Str {
      * Cap a string with a single instance of a given value.
      *
      * @param value the string.
-     * @param cap The suffix to append to the end of the string.
+     * @param cap   The suffix to append to the end of the string.
      * @return A new string if suffix was appended, the same string otherwise.
      */
     public static String finish(String value, String cap) {
@@ -59,7 +59,7 @@ public class Str {
     /**
      * Begin a string with a single instance of a given value.
      *
-     * @param value the string.
+     * @param value  the string.
      * @param prefix The prefix to prepend to the start of the string.
      * @return A new string if prefix was prepended, the same string otherwise.
      */
@@ -90,7 +90,7 @@ public class Str {
      *
      * @param value the string to limit
      * @param limit maximum length of the result main string
-     * @param end suffix of the limited result
+     * @param end   suffix of the limited result
      * @return limited string, null if null string input
      */
     public static String limit(String value, int limit, String end) {
@@ -116,7 +116,7 @@ public class Str {
      * Limit the number of characters in a string.
      *
      * @param value the string to limit
-     * @param end suffix of the limited result
+     * @param end   suffix of the limited result
      * @return limited string, null if null string input
      */
     public static String limit(String value, String end) {
@@ -153,7 +153,7 @@ public class Str {
     /**
      * Replace the last occurrence of a given value in the string.
      *
-     * @param search the regular expression to which this string is to be matched
+     * @param search  the regular expression to which this string is to be matched
      * @param replace the string to be substituted
      * @param subject text to search and replace in, may be null
      * @return the text with the last replacement processed, null if null string input.
