@@ -1,10 +1,13 @@
 package indi.princelo.concise.helper;
 
+import indi.princelo.functional.Predicate;
+
 import java.util.Arrays;
 import java.util.Collection;
 
 import static indi.princelo.concise.helper.Coll.empty;
 import static indi.princelo.concise.helper.Coll.except;
+import static indi.princelo.concise.helper.Str.blank;
 
 public class Sql {
 
@@ -27,7 +30,12 @@ public class Sql {
      * @return the sql predication StringBuffer, a safe predication if invalid values input
      */
     public static StringBuffer in(Collection<String> values, String col) {
-        Collection<String> filtered = except(values, Str::blank);
+        Collection<String> filtered = except(values, new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return blank(s);
+            }
+        });
         if (empty(filtered)) {
             return new StringBuffer(" (" + col + " in ('impossibleValue')) ");
         }
@@ -66,7 +74,12 @@ public class Sql {
      * @return the sql predication StringBuffer, a safe predication if invalid values input
      */
     public static StringBuffer notIn(Collection<String> values, String col) {
-        Collection<String> filtered = except(values, Str::blank);
+        Collection<String> filtered = except(values, new Predicate<String>() {
+            @Override
+            public boolean test(String s) {
+                return blank(s);
+            }
+        });
         if (empty(filtered)) {
             return new StringBuffer(" (" + col + " not in ('impossibleValue')) ");
         }

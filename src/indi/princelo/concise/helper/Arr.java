@@ -1,7 +1,8 @@
 package indi.princelo.concise.helper;
 
+import indi.princelo.functional.Predicate;
+
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 public class Arr {
 
@@ -44,8 +45,13 @@ public class Arr {
      * @param <T>       the type of object
      * @return the array filtered
      */
-    public static <T> T[] except(T[] arr, Predicate<T> predicate) {
-        return filter(arr, predicate.negate());
+    public static <T> T[] except(T[] arr, final Predicate<T> predicate) {
+        return filter(arr, new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return !predicate.test(t);
+            }
+        });
     }
 
     /**

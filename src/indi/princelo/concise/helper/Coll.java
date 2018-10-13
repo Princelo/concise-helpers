@@ -1,9 +1,10 @@
 package indi.princelo.concise.helper;
 
+import indi.princelo.functional.Function;
+import indi.princelo.functional.Predicate;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class Coll {
 
@@ -16,8 +17,13 @@ public class Coll {
      * @param <T>        the type of object
      * @return the collection filtered
      */
-    public static <T> Collection<T> except(Collection<T> collection, Predicate<T> predicate) {
-        return filter(collection, predicate.negate());
+    public static <T> Collection<T> except(Collection<T> collection, final Predicate<T> predicate) {
+        return filter(collection, new Predicate<T>() {
+            @Override
+            public boolean test(T t) {
+                return !predicate.test(t);
+            }
+        });
     }
 
     /**
@@ -30,7 +36,7 @@ public class Coll {
      * @return the collection filtered
      */
     public static <T> Collection<T> filter(Collection<T> collection, Predicate<T> predicate) {
-        Collection<T> filtered = new ArrayList<>();
+        Collection<T> filtered = new ArrayList<T>();
         if (empty(collection)) {
             return filtered;
         }
@@ -64,9 +70,9 @@ public class Coll {
      */
     public static <T, U> Collection<U> map(Collection<T> items, Function<T, U> processor) {
         if (empty(items)) {
-            return new ArrayList<>();
+            return new ArrayList<U>();
         }
-        Collection<U> processed = new ArrayList<>();
+        Collection<U> processed = new ArrayList<U>();
         for (T item : items) {
             processed.add(processor.apply(item));
         }
