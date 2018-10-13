@@ -2,6 +2,7 @@ package indi.princelo.concise.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Coll {
@@ -50,6 +51,23 @@ public class Coll {
      */
     public static boolean empty(Collection<?> collection) {
         return null == collection || collection.isEmpty();
+    }
+
+    /**
+     * Run a map over each of the items.
+     *
+     * @param items     the collection of items to process
+     * @param processor the processor to process each item
+     * @param <T>       the type of given object
+     * @param <U>       the type of object processed
+     * @return the collection with the items processed
+     */
+    public static <T, U> Collection<U> map(Collection<T> items, Function<T, U> processor) {
+        Collection<U> processed = new ArrayList<>();
+        for (T item : items) {
+            processed.add(processor.apply(item));
+        }
+        return processed;
     }
 
 }

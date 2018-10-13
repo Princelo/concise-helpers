@@ -1,5 +1,7 @@
 package indi.princelo.concise.helper;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Random;
 
 public class Str {
@@ -176,5 +178,19 @@ public class Str {
             return str;
         }
         return new StringBuffer(str).reverse().toString();
+    }
+
+    public static String join(Collection<String> collection, String delimiter) {
+        StringBuffer result = new StringBuffer();
+        String delimiter_ = "";
+        for (String element : collection) {
+            result.append(delimiter_).append(element);
+            delimiter_ = delimiter;
+        }
+        return result.toString();
+    }
+
+    public static String join(String[] arr, String delimiter) {
+        return join(Arrays.asList(arr), delimiter);
     }
 }
