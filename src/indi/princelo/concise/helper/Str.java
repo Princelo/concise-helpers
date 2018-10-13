@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Random;
 
+import static indi.princelo.concise.helper.Coll.empty;
+
 public class Str {
     /**
      * Get the portion of a string before a given value.
@@ -180,7 +182,28 @@ public class Str {
         return new StringBuffer(str).reverse().toString();
     }
 
+    /**
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     *
+     * @param arr       the values to join together, may be null
+     * @param delimiter the separator to use
+     * @return the joined string, null if empty array input
+     */
+    public static String join(String[] arr, String delimiter) {
+        return join(Arrays.asList(arr), delimiter);
+    }
+
+    /**
+     * Joins the elements of the provided array into a single String containing the provided list of elements.
+     *
+     * @param collection the values to join together, may be null
+     * @param delimiter  the separator to use
+     * @return the joined string, null if empty collection input
+     */
     public static String join(Collection<String> collection, String delimiter) {
+        if (empty(collection)) {
+            return null;
+        }
         StringBuffer result = new StringBuffer();
         String delimiter_ = "";
         for (String element : collection) {
@@ -188,9 +211,5 @@ public class Str {
             delimiter_ = delimiter;
         }
         return result.toString();
-    }
-
-    public static String join(String[] arr, String delimiter) {
-        return join(Arrays.asList(arr), delimiter);
     }
 }

@@ -63,6 +63,9 @@ public class Coll {
      * @return the collection with the items processed
      */
     public static <T, U> Collection<U> map(Collection<T> items, Function<T, U> processor) {
+        if (empty(items)) {
+            return new ArrayList<>();
+        }
         Collection<U> processed = new ArrayList<>();
         for (T item : items) {
             processed.add(processor.apply(item));
